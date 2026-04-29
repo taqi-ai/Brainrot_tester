@@ -405,6 +405,39 @@
     { "text": "Heard before", "weight": 3 },
     { "text": "No idea", "weight": 4 }
   ]
+},
+{
+  "id": 38,
+  "question": "Instagram pe ‘bro is cooked 💀’ comment dekho toh...",
+  "category": "Dopamine 🎰",
+  "options": [
+    { "text": "Like + laugh 😂", "weight": 1 },
+    { "text": "Laugh and scroll", "weight": 2 },
+    { "text": "Ignore", "weight": 3 },
+    { "text": "Never read comments", "weight": 4 }
+  ]
+},
+{
+  "id": 39,
+  "question": "‘System hang 😵‍💫’ kab hota hai?",
+  "category": "Focus 🧘‍♂️",
+  "options": [
+    { "text": "Math dekhte hi", "weight": 1 },
+    { "text": "Teacher question puche", "weight": 2 },
+    { "text": "Confused ho jaun", "weight": 3 },
+    { "text": "Rarely", "weight": 4 }
+  ]
+},
+{
+  "id": 40,
+  "question": "Aajkal tera mood zyada kya hai?",
+  "category": "Energy ⚡",
+  "options": [
+    { "text": "‘Arey bhai kya ho raha hai’ 😭", "weight": 1 },
+    { "text": "Thoda chaos", "weight": 2 },
+    { "text": "Manageable", "weight": 3 },
+    { "text": "Sigma arc 🗿", "weight": 4 }
+  ]
 }
 
 ]
