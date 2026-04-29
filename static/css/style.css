@@ -79,6 +79,51 @@ body.light-mode .navbar {
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
 
+/* Toggle Base Styles */
+.slider-track {
+    width: 40px;
+    height: 20px;
+    background: #444; /* Default inactive color */
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.slider-knob {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.slider-track.active {
+    background: #ccc !important;
+}
+
+.slider-track.active .slider-knob {
+    left: 22px !important;
+}
+
+/* Sound track specific override if needed */
+.sound-track.active {
+    background: #ccc !important;
+}
+
+/* Theme track specific (Dark mode is inactive, Light mode is active) */
+body.light-mode .theme-track {
+    background: #ccc !important;
+}
+body:not(.light-mode) .theme-track {
+    background: #444 !important;
+}
+
 body.light-mode .feature-item:hover {
     background: rgba(0,0,0,0.03);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -431,6 +476,44 @@ h1, h2, h3, h4 {
 .btn-main:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 0 50px rgba(182, 255, 0, 0.8), inset 0 2px 5px rgba(255, 255, 255, 0.7);
+}
+
+.glow-effect {
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-effect::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.glow-effect:hover::after {
+    opacity: 1;
+    animation: rotateGlow 3s linear infinite;
+}
+
+@keyframes rotateGlow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.pulse-effect {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 10px rgba(182, 255, 0, 0.4); }
+    50% { box-shadow: 0 0 25px rgba(182, 255, 0, 0.7); }
+    100% { box-shadow: 0 0 10px rgba(182, 255, 0, 0.4); }
 }
 
 .share-btn-wa {
@@ -1113,89 +1196,193 @@ h1, h2, h3, h4 {
 ========================= */
 @media (max-width: 768px) {
     .navbar {
-        width: 95%;
-        left: 2.5%;
-        padding: 15px 20px;
+        width: 96%;
+        left: 2%;
+        padding: 8px 12px;
+        top: 8px;
+        border-radius: 16px;
     }
 
     .nav-links {
         display: none;
     }
+    
+    .logo {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .nav-right {
+        gap: 6px !important;
+    }
+
+    .toggles {
+        padding: 4px 6px !important;
+        gap: 4px !important;
+        border-radius: 10px !important;
+    }
+    
+    .theme-track, .sound-track {
+        width: 28px !important;
+        height: 14px !important;
+    }
+    
+    .theme-knob, .sound-knob {
+        width: 10px !important;
+        height: 10px !important;
+        top: 2px !important;
+    }
+    
+    .theme-knob { left: 2px !important; }
+    body.light-mode .theme-knob { left: 16px !important; }
+    
+    .sound-knob { left: 2px !important; }
+    /* We need to handle the left position for sound toggle on mobile in JS too if we change width */
+
+    .btn-sign {
+        padding: 5px 10px;
+        font-size: 10px;
+    }
 
     .hero-center {
-        padding: 30px;
-        width: 90%;
+        padding: 15px;
+        width: 100%;
+        margin-top: 10px;
     }
 
-    .big { font-size: 3.5rem; }
-    .small { font-size: 1.5rem; }
-
-    .float img { width: 100px; }
-
-    .result-main { padding: 30px; }
-
-    .result-score { font-size: 4rem; }
-    .score-denominator { font-size: 1.5rem; }
-
-    .quiz-container {
-        margin: 20px;
-        padding: 20px;
+    .hero-how {
+        font-size: clamp(1.5rem, 8vw, 2.2rem);
+        margin-bottom: -40px;
     }
-
-    .question-card h2 {
-        font-size: 1.5rem;
-        margin-bottom: 30px;
-    }
-
-    .quiz-header-info {
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 20px;
-    }
-
-    .analyzing-title {
+    
+    .hero-crown {
         font-size: 1.8rem;
+        top: -30px;
+        left: -25px;
+    }
+
+    .hero-main {
+        font-size: clamp(3rem, 15vw, 4.5rem);
+        text-shadow: 0 0 10px rgba(255, 0, 127, 0.5);
+    }
+    
+    .hero-are-you {
+        font-size: clamp(1.5rem, 8vw, 2.2rem);
+        margin-top: -25px;
+    }
+
+    .sub {
+        font-size: 0.95rem;
+        margin: 15px 0 25px;
+        line-height: 1.4;
+    }
+
+    .btn-main {
+        padding: 16px 32px;
+        font-size: 1rem;
+    }
+
+    .float {
+        display: block !important;
+        z-index: 1;
+        opacity: 0.7;
+    }
+    
+    .float img { 
+        width: 80px !important; 
+    }
+    
+    .float img[src*="acp.png"] {
+        width: 110px !important;
+    }
+    
+    .bubble {
+        padding: 3px 6px;
+        font-size: 9px;
+        max-width: 80px;
+        white-space: normal;
+    }
+    
+    .bubble-audio {
+        gap: 4px;
+    }
+    
+    .mini-waveform {
+        width: 30px;
+    }
+
+    .mentally-fried-bubble {
+        display: flex;
+        top: -35px;
+        left: 5%;
+        transform: rotate(-5deg) scale(0.7);
     }
 
     .features-row {
-        flex-direction: column;
-        margin: 20px;
-        padding: 15px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin: 20px 15px;
+        padding: 12px;
+        gap: 12px;
     }
 
     .feature-item {
         border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        width: 100%;
-        padding: 15px 0;
-    }
-
-    .feature-item:last-child {
         border-bottom: none;
+        background: rgba(255, 255, 255, 0.03);
+        width: auto;
+        padding: 10px;
+        text-align: center;
+        flex-direction: column;
+        justify-content: center;
     }
 
-    .action-buttons button, .action-buttons a {
-        width: 100%;
-        padding: 18px 20px;
-        font-size: 1rem;
+    .feature-icon {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .feature-item h4 {
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+    }
+
+    .feature-item p {
+        font-size: 0.65rem;
     }
     
-    .float {
-        display: none; /* Hide floating memes on mobile to avoid clutter */
+    .mini-waveform-features {
+        width: 40px;
+        margin: 5px auto 0;
     }
-    
-    .mentally-fried-bubble {
-        display: none;
+
+    .result-main { padding: 20px; }
+    .result-score { font-size: 3.5rem; }
+
+    .quiz-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 20px;
+    }
+
+    .question-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
     }
 
     .leaderboard-item {
-        grid-template-columns: 50px 1fr 80px;
-        padding: 15px 20px;
-        font-size: 1rem;
+        grid-template-columns: 35px 1fr 60px;
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        border-radius: 12px;
     }
     
     .leaderboard-item .rank, .leaderboard-item .score {
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .slider-track.active .slider-knob {
+        left: 16px !important;
     }
 }
 /* =========================

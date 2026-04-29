@@ -54,15 +54,15 @@
                     <!-- Theme -->
                     <div style="display:flex; align-items:center; gap:8px;" id="theme-btn">
                         <div class="theme-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Day/Night Mode">🌙</div>
-                        <div class="slider-track theme-track" style="width: 40px; height: 20px; background: #444; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
-                            <div class="slider-knob theme-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        <div class="slider-track theme-track">
+                            <div class="slider-knob theme-knob"></div>
                         </div>
                     </div>
                     <!-- Sound -->
                     <div style="display:flex; align-items:center; gap:8px;" id="sound-btn">
                         <div class="sound-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Sound">🔊</div>
-                        <div class="slider-track sound-track" style="width: 40px; height: 20px; background: #ccc; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
-                            <div class="slider-knob sound-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 22px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        <div class="slider-track sound-track">
+                            <div class="slider-knob sound-knob"></div>
                         </div>
                     </div>
                 </div>
@@ -107,13 +107,11 @@
             if (isLight) {
                 body.classList.add('light-mode');
                 themeIcon.innerText = '☀️';
-                themeKnob.style.left = '22px';
-                themeTrack.style.background = '#ccc';
+                themeTrack.classList.add('active');
             } else {
                 body.classList.remove('light-mode');
                 themeIcon.innerText = '🌙';
-                themeKnob.style.left = '2px';
-                themeTrack.style.background = '#444';
+                themeTrack.classList.remove('active');
             }
         }
 
@@ -136,12 +134,10 @@
         function updateSoundUI(isEnabled) {
             if (isEnabled) {
                 soundIcon.innerText = '🔊';
-                soundKnob.style.left = '22px';
-                soundTrack.style.background = '#ccc';
+                soundTrack.classList.add('active');
             } else {
                 soundIcon.innerText = '🔇';
-                soundKnob.style.left = '2px';
-                soundTrack.style.background = '#444';
+                soundTrack.classList.remove('active');
             }
         }
         
