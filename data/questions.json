@@ -4,22 +4,10 @@
     "question": "You open a YouTube video…",
     "category": "Focus 🧘‍♂️",
     "options": [
-      {
-        "text": "Finish full video like a monk 🧘♂️",
-        "weight": 4
-      },
-      {
-        "text": "Watch decent part (lowkey invested)",
-        "weight": 3
-      },
-      {
-        "text": "Watch 10 sec then next 👉",
-        "weight": 2
-      },
-      {
-        "text": "Skip in 2 sec max (nah this ain’t hitting 💀)",
-        "weight": 1
-      }
+      { "text": "Finish full video like a monk 🧘♂️", "weight": 4 },
+      { "text": "Watch decent part (lowkey invested)", "weight": 3 },
+      { "text": "Watch 10 sec then next 👉", "weight": 2 },
+      { "text": "Skip in 2 sec max (nah this ain’t hitting 💀)", "weight": 1 }
     ]
   },
   {
@@ -27,22 +15,10 @@
     "question": "Instagram opens and suddenly…",
     "category": "Control 🎯",
     "options": [
-      {
-        "text": "Close app instantly (built diff 🗿)",
-        "weight": 4
-      },
-      {
-        "text": "Scroll like crazy but aware",
-        "weight": 2
-      },
-      {
-        "text": "Watch few, then exit",
-        "weight": 3
-      },
-      {
-        "text": "30 min gone, I became NPC 🤖",
-        "weight": 1
-      }
+      { "text": "Close app instantly (built diff 🗿)", "weight": 4 },
+      { "text": "Scroll like crazy but aware", "weight": 2 },
+      { "text": "Watch few, then exit", "weight": 3 },
+      { "text": "30 min gone, I became NPC 🤖", "weight": 1 }
     ]
   },
   {
@@ -50,22 +26,10 @@
     "question": "Last reel you watched was about?",
     "category": "Memory 🧠",
     "options": [
-      {
-        "text": "Bro idk my brain is fried 💀",
-        "weight": 1
-      },
-      {
-        "text": "Something funny ig",
-        "weight": 2
-      },
-      {
-        "text": "I kinda remember",
-        "weight": 3
-      },
-      {
-        "text": "I remember exactly (plot + details)",
-        "weight": 4
-      }
+      { "text": "Bro idk my brain is fried 💀", "weight": 1 },
+      { "text": "Something funny ig", "weight": 2 },
+      { "text": "I kinda remember", "weight": 3 },
+      { "text": "I remember exactly (plot + details)", "weight": 4 }
     ]
   },
   {
@@ -73,22 +37,10 @@
     "question": "While studying you…",
     "category": "Focus 🧘‍♂️",
     "options": [
-      {
-        "text": "Lock in HARD (sigma grind 🗿📚)",
-        "weight": 4
-      },
-      {
-        "text": "Stay focused mostly",
-        "weight": 3
-      },
-      {
-        "text": "Check phone every few min",
-        "weight": 2
-      },
-      {
-        "text": "Alt+Tab Olympics every 1 min",
-        "weight": 1
-      }
+      { "text": "Lock in HARD (sigma grind 🗿📚)", "weight": 4 },
+      { "text": "Stay focused mostly", "weight": 3 },
+      { "text": "Check phone every few min", "weight": 2 },
+      { "text": "Alt+Tab Olympics every 1 min", "weight": 1 }
     ]
   },
   {
@@ -96,22 +48,10 @@
     "question": "You feel bored for 5 sec…",
     "category": "Dopamine 🎰",
     "options": [
-      {
-        "text": "Think… then still open phone",
-        "weight": 2
-      },
-      {
-        "text": "Phone unlock speed = Flash ⚡",
-        "weight": 1
-      },
-      {
-        "text": "Resist sometimes",
-        "weight": 3
-      },
-      {
-        "text": "Sit peacefully",
-        "weight": 4
-      }
+      { "text": "Think… then still open phone", "weight": 2 },
+      { "text": "Phone unlock speed = Flash ⚡", "weight": 1 },
+      { "text": "Resist sometimes", "weight": 3 },
+      { "text": "Sit peacefully", "weight": 4 }
     ]
   },
   {
@@ -119,22 +59,10 @@
     "question": "Your usual state:",
     "category": "Energy ⚡",
     "options": [
-      {
-        "text": "Mostly one thing",
-        "weight": 3
-      },
-      {
-        "text": "Single-task final boss 🎯",
-        "weight": 4
-      },
-      {
-        "text": "2 things at once always",
-        "weight": 2
-      },
-      {
-        "text": "Reels + chat + YouTube chaos 💀",
-        "weight": 1
-      }
+      { "text": "Mostly one thing", "weight": 3 },
+      { "text": "Single-task final boss 🎯", "weight": 4 },
+      { "text": "2 things at once always", "weight": 2 },
+      { "text": "Reels + chat + YouTube chaos 💀", "weight": 1 }
     ]
   },
   {
@@ -142,22 +70,10 @@
     "question": "After distraction, your focus:",
     "category": "Memory 🧠",
     "options": [
-      {
-        "text": "Takes ages to come back",
-        "weight": 2
-      },
-      {
-        "text": "Instant reset",
-        "weight": 4
-      },
-      {
-        "text": "Gone forever 💀",
-        "weight": 1
-      },
-      {
-        "text": "Comes back in few min",
-        "weight": 3
-      }
+      { "text": "Takes ages to come back", "weight": 2 },
+      { "text": "Instant reset", "weight": 4 },
+      { "text": "Gone forever 💀", "weight": 1 },
+      { "text": "Comes back in few min", "weight": 3 }
     ]
   },
   {
@@ -165,22 +81,10 @@
     "question": "Your content diet:",
     "category": "Dopamine 🎰",
     "options": [
-      {
-        "text": "Mix of both",
-        "weight": 3
-      },
-      {
-        "text": "Shorts / reels mostly",
-        "weight": 2
-      },
-      {
-        "text": "Long vids, podcasts, books",
-        "weight": 4
-      },
-      {
-        "text": "Pure memes + brainrot",
-        "weight": 1
-      }
+      { "text": "Mix of both", "weight": 3 },
+      { "text": "Shorts / reels mostly", "weight": 2 },
+      { "text": "Long vids, podcasts, books", "weight": 4 },
+      { "text": "Pure memes + brainrot", "weight": 1 }
     ]
   },
   {
@@ -188,22 +92,10 @@
     "question": "Notification pops…",
     "category": "Control 🎯",
     "options": [
-      {
-        "text": "Ignore easily",
-        "weight": 4
-      },
-      {
-        "text": "Sometimes ignore",
-        "weight": 3
-      },
-      {
-        "text": "CLICK NOW 😤",
-        "weight": 1
-      },
-      {
-        "text": "Almost always check",
-        "weight": 2
-      }
+      { "text": "Ignore easily", "weight": 4 },
+      { "text": "Sometimes ignore", "weight": 3 },
+      { "text": "CLICK NOW 😤", "weight": 1 },
+      { "text": "Almost always check", "weight": 2 }
     ]
   },
   {
@@ -211,22 +103,230 @@
     "question": "After long scrolling session:",
     "category": "Energy ⚡",
     "options": [
-      {
-        "text": "Brain = mashed potato 💀",
-        "weight": 1
-      },
-      {
-        "text": "Normal",
-        "weight": 3
-      },
-      {
-        "text": "Energized",
-        "weight": 4
-      },
-      {
-        "text": "Slightly tired",
-        "weight": 2
-      }
+      { "text": "Brain = mashed potato 💀", "weight": 1 },
+      { "text": "Normal", "weight": 3 },
+      { "text": "Energized", "weight": 4 },
+      { "text": "Slightly tired", "weight": 2 }
+    ]
+  },
+  {
+    "id": 11,
+    "question": "When you wake up, the first thing you do is:",
+    "category": "Dopamine 🎰",
+    "options": [
+      { "text": "Drink water & stretch (Zen mode)", "weight": 4 },
+      { "text": "Check messages only", "weight": 3 },
+      { "text": "Quick 5-min scroll", "weight": 2 },
+      { "text": "Wake up and straight to TikTok 📱", "weight": 1 }
+    ]
+  },
+  {
+    "id": 12,
+    "question": "Watching a 2-hour movie:",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      { "text": "Need Subway Surfers gameplay to survive", "weight": 1 },
+      { "text": "Check phone during boring parts", "weight": 2 },
+      { "text": "Mostly watch the movie", "weight": 3 },
+      { "text": "Phone in another room, full immersion 🍿", "weight": 4 }
+    ]
+  },
+  {
+    "id": 13,
+    "question": "Using slang in real life:",
+    "category": "Control 🎯",
+    "options": [
+      { "text": "Speak normally", "weight": 4 },
+      { "text": "Say 'bro' or 'wild' sometimes", "weight": 3 },
+      { "text": "Accidentally say 'rizz' aloud", "weight": 2 },
+      { "text": "Unironically saying 'Skibidi' to parents 💀", "weight": 1 }
+    ]
+  },
+  {
+    "id": 14,
+    "question": "When waiting in line at a store:",
+    "category": "Energy ⚡",
+    "options": [
+      { "text": "Stand still and observe the world 🌍", "weight": 4 },
+      { "text": "Think about my day", "weight": 3 },
+      { "text": "Pull out phone just to look busy", "weight": 2 },
+      { "text": "Instantly doomscroll 🧟", "weight": 1 }
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Reading a physical book:",
+    "category": "Memory 🧠",
+    "options": [
+      { "text": "Can read for hours 📖", "weight": 4 },
+      { "text": "Read a chapter, then break", "weight": 3 },
+      { "text": "Barely get through a page", "weight": 2 },
+      { "text": "Words look like alien text to me 👽", "weight": 1 }
+    ]
+  },
+  {
+    "id": 16,
+    "question": "Video playback speed:",
+    "category": "Dopamine 🎰",
+    "options": [
+      { "text": "Even 2x is too slow, I skip ahead", "weight": 1 },
+      { "text": "Always 2x speed", "weight": 2 },
+      { "text": "Sometimes 1.5x", "weight": 3 },
+      { "text": "1x speed like a normal human", "weight": 4 }
+    ]
+  },
+  {
+    "id": 17,
+    "question": "During family dinner:",
+    "category": "Control 🎯",
+    "options": [
+      { "text": "Deep conversation, no tech", "weight": 4 },
+      { "text": "Phone in pocket", "weight": 3 },
+      { "text": "Quick text replies under table", "weight": 2 },
+      { "text": "Watching shorts with max volume 📢", "weight": 1 }
+    ]
+  },
+  {
+    "id": 18,
+    "question": "Your sleep schedule:",
+    "category": "Energy ⚡",
+    "options": [
+      { "text": "Asleep by 10:30 PM consistently", "weight": 4 },
+      { "text": "Midnight usually", "weight": 3 },
+      { "text": "1 AM - 2 AM", "weight": 2 },
+      { "text": "3 AM doomscrolling 🧛‍♂️", "weight": 1 }
+    ]
+  },
+  {
+    "id": 19,
+    "question": "When a friend is telling a long story:",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      { "text": "Zone out after 5 seconds", "weight": 1 },
+      { "text": "Nod, but thinking about memes", "weight": 2 },
+      { "text": "Listen to most of it", "weight": 3 },
+      { "text": "Active listening and eye contact 👀", "weight": 4 }
+    ]
+  },
+  {
+    "id": 20,
+    "question": "Your phone's screen time report says:",
+    "category": "Memory 🧠",
+    "options": [
+      { "text": "Under 2 hours (Sigma)", "weight": 4 },
+      { "text": "3-4 hours", "weight": 3 },
+      { "text": "5-7 hours", "weight": 2 },
+      { "text": "8+ hours (Terminal Brainrot 📉)", "weight": 1 }
+    ]
+  },
+  {
+    "id": 21,
+    "question": "Using the restroom:",
+    "category": "Control 🎯",
+    "options": [
+      { "text": "In and out, no phone", "weight": 4 },
+      { "text": "Listen to music", "weight": 3 },
+      { "text": "Scroll a little bit", "weight": 2 },
+      { "text": "Legs go numb from sitting and scrolling 🚽", "weight": 1 }
+    ]
+  },
+  {
+    "id": 22,
+    "question": "When an ad plays on YouTube:",
+    "category": "Dopamine 🎰",
+    "options": [
+      { "text": "Stare blankly into the void", "weight": 4 },
+      { "text": "Get some water", "weight": 3 },
+      { "text": "Mash the 'Skip' button area blindly", "weight": 2 },
+      { "text": "Switch to another app immediately 🏃‍♂️", "weight": 1 }
+    ]
+  },
+  {
+    "id": 23,
+    "question": "Your browser tabs right now:",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      { "text": "1-3 tabs organized neatly", "weight": 4 },
+      { "text": "Around 5-10", "weight": 3 },
+      { "text": "Too many to read titles", "weight": 2 },
+      { "text": "73 tabs across 4 windows 🤯", "weight": 1 }
+    ]
+  },
+  {
+    "id": 24,
+    "question": "When studying, your music choice is:",
+    "category": "Energy ⚡",
+    "options": [
+      { "text": "Silence or Lo-Fi", "weight": 4 },
+      { "text": "Instrumentals/Classical", "weight": 3 },
+      { "text": "My regular playlist", "weight": 2 },
+      { "text": "Phonk/Brainrot TikTok sounds on loop", "weight": 1 }
+    ]
+  },
+  {
+    "id": 25,
+    "question": "Riding the bus or train:",
+    "category": "Control 🎯",
+    "options": [
+      { "text": "Enjoying the scenery 🪟", "weight": 4 },
+      { "text": "Reading or listening to a podcast", "weight": 3 },
+      { "text": "Texting/Social media", "weight": 2 },
+      { "text": "Watching videos with no headphones 😭", "weight": 1 }
+    ]
+  },
+  {
+    "id": 26,
+    "question": "If your Wi-Fi goes down for an hour:",
+    "category": "Dopamine 🎰",
+    "options": [
+      { "text": "Panic attack, sweating profusely", "weight": 1 },
+      { "text": "Constantly checking the router", "weight": 2 },
+      { "text": "Find something else to do", "weight": 3 },
+      { "text": "Finally, inner peace 🕊️", "weight": 4 }
+    ]
+  },
+  {
+    "id": 27,
+    "question": "Your reaction to a 5-minute video tutorial:",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      { "text": "'Where is the TL;DR?'", "weight": 1 },
+      { "text": "Skip through it to find the answer", "weight": 2 },
+      { "text": "Watch it on 1.5x speed", "weight": 3 },
+      { "text": "Take notes", "weight": 4 }
+    ]
+  },
+  {
+    "id": 28,
+    "question": "When you see a stunning sunset:",
+    "category": "Memory 🧠",
+    "options": [
+      { "text": "Take 50 photos, miss the moment", "weight": 1 },
+      { "text": "Snap a quick pic for the story", "weight": 2 },
+      { "text": "Take one picture, then look", "weight": 3 },
+      { "text": "Just absorb it with my eyes 🌅", "weight": 4 }
+    ]
+  },
+  {
+    "id": 29,
+    "question": "How often do you misplace your phone?",
+    "category": "Energy ⚡",
+    "options": [
+      { "text": "Never, it's glued to my hand", "weight": 1 },
+      { "text": "Rarely", "weight": 2 },
+      { "text": "Sometimes", "weight": 3 },
+      { "text": "Often, I don't care about it", "weight": 4 }
+    ]
+  },
+  {
+    "id": 30,
+    "question": "When eating alone:",
+    "category": "Control 🎯",
+    "options": [
+      { "text": "Cannot swallow without a video playing", "weight": 1 },
+      { "text": "Scroll while eating", "weight": 2 },
+      { "text": "Listen to music/podcast", "weight": 3 },
+      { "text": "Mindful eating, tasting the food 🍲", "weight": 4 }
     ]
   }
 ]
