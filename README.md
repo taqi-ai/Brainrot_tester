@@ -127,6 +127,7 @@ brainrot_app/
 
 Feel free to fork and improve the project.
 
+
 ---
 
 ## 📜 License
@@ -143,6 +144,8 @@ If your score is low…
 > It’s your reels addiction.
 
 
-##Feel free to test it out at - https://brainrot-tester.onrender.com/
+## Feel free to test it out at  
+https://brainrot-tester.onrender.com/
 ### Contributions
-- Harsh: Added minor update
+- Harsh: Added minor documentation update
+- Harsh: Added final documentation update
