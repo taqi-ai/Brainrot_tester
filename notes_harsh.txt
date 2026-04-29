@@ -1,0 +1,2 @@
+This project is a Flask-based brainrot tester.
+Created for learning and fun.
