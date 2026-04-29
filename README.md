@@ -141,3 +141,6 @@ If your score is low…
 
 > It’s not the app.
 > It’s your reels addiction.
+
+
+##Feel free to test it out at - https://brainrot-tester.onrender.com/
