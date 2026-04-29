@@ -144,3 +144,5 @@ If your score is low…
 
 
 ##Feel free to test it out at - https://brainrot-tester.onrender.com/
+### Contributions
+- Harsh: Added minor update
