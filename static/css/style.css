@@ -374,7 +374,8 @@ h1, h2, h3, h4 {
 .hero-crown {
     position: absolute; 
     top: -45px; 
-    left: -50px; 
+    left: 50%;
+    transform: translateX(-50%) rotate(-15deg);
     font-size: 3.2rem; 
     color: var(--neon-green);
     cursor: pointer;
@@ -384,22 +385,28 @@ h1, h2, h3, h4 {
 }
 
 .hero-crown:hover {
-    transform: scale(1.2) rotate(15deg) !important;
+    transform: translateX(-50%) scale(1.2) rotate(15deg) !important;
     text-shadow: 0 0 20px rgba(204, 255, 0, 0.8);
 }
 
 @keyframes crownFloat {
-    0%, 100% { transform: translateY(0) rotate(-15deg); }
-    50% { transform: translateY(-10px) rotate(-10deg); }
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(-15deg); }
+    50% { transform: translateX(-50%) translateY(-10px) rotate(-10deg); }
 }
 
 .rank-crown {
     position: absolute;
-    top: -20px;
-    left: -15px;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 2rem;
-    animation: crownFloat 3s ease-in-out infinite;
-    z-index: 10;
+    animation: rankCrownFloat 3s ease-in-out infinite;
+    z-index: 20;
+}
+
+@keyframes rankCrownFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0) rotate(-10deg); }
+    50% { transform: translateX(-50%) translateY(-5px) rotate(10deg); }
 }
 
 .hero-main {
@@ -1256,9 +1263,8 @@ h1, h2, h3, h4 {
     }
     
     .hero-crown {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         top: -30px;
-        left: -25px;
     }
 
     .hero-main {
@@ -1284,16 +1290,24 @@ h1, h2, h3, h4 {
 
     .float {
         display: block !important;
-        z-index: 1;
-        opacity: 0.7;
+        z-index: 100; /* Ensure it's above everything including features row */
+        opacity: 0.9;
     }
     
     .float img { 
-        width: 80px !important; 
+        width: 70px !important; 
     }
     
     .float img[src*="acp.png"] {
-        width: 110px !important;
+        width: 100px !important;
+    }
+
+    /* Move acp and tung slightly higher on mobile to avoid features row overlap */
+    .font-acp {
+        bottom: 25% !important;
+    }
+    .font-tung {
+        bottom: 25% !important;
     }
     
     .bubble {
@@ -1379,6 +1393,11 @@ h1, h2, h3, h4 {
     
     .leaderboard-item .rank, .leaderboard-item .score {
         font-size: 1rem;
+    }
+
+    .rank-crown {
+        top: -22px;
+        font-size: 1.4rem;
     }
 
     .slider-track.active .slider-knob {

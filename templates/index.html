@@ -298,18 +298,45 @@
         }
 
         let currentMemeAudio = null;
+        let audioUnlocked = false;
+
+        // Function to unlock audio on mobile (user interaction required)
+        function unlockAudio() {
+            if (audioUnlocked) return;
+            const silent = new Audio();
+            silent.play().then(() => {
+                audioUnlocked = true;
+                window.removeEventListener('click', unlockAudio);
+                window.removeEventListener('touchstart', unlockAudio);
+                console.log("Audio unlocked!");
+            }).catch(e => console.log("Unlock failed:", e));
+        }
+
+        window.addEventListener('click', unlockAudio);
+        window.addEventListener('touchstart', unlockAudio);
 
         function playMemeSound(name) {
             if (localStorage.getItem('br_sound') === 'off') return;
+            
+            // Try to use a pre-created audio if it helps mobile
+            const audio = new Audio(`/static/assets/sounds/${name}.mp3`);
+            audio.volume = 0.6;
             
             if (currentMemeAudio) {
                 currentMemeAudio.pause();
                 currentMemeAudio.currentTime = 0;
             }
             
-            currentMemeAudio = new Audio(`/static/assets/sounds/${name}.mp3`);
-            currentMemeAudio.volume = 0.5;
-            currentMemeAudio.play().catch(e => console.log("Audio play failed:", e));
+            currentMemeAudio = audio;
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Playback prevented. Ensure first interaction happened.", error);
+                    // On failure, try to unlock again
+                    audioUnlocked = false;
+                });
+            }
         }
     </script>
 </body>
