@@ -148,3 +148,4 @@ If your score is low…
 https://brainrot-tester.onrender.com/
 ### Contributions
 - Harsh: Added minor documentation update
+- Harsh: Added final documentation update
