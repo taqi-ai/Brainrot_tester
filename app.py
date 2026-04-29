@@ -135,6 +135,11 @@ def index():
 @app.route('/quiz')
 def quiz():
     questions = load_json('questions.json')
+    
+    # Select 10 random questions if the pool is larger than 10
+    if len(questions) > 10:
+        questions = random.sample(questions, 10)
+        
     return render_template('quiz.html', questions=questions)
 
 @app.route('/about')
