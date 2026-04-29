@@ -1,0 +1,46 @@
+{
+  "floating_icons": [
+    {
+      "img": "cat.png",
+      "pos": { "top": "15%", "left": "3%" },
+      "anim": "fade-down-right",
+      "text": "bro is cooked",
+      "bubble_class": "bubble-right pink-border"
+    },
+    {
+      "img": "hehehe.png",
+      "pos": { "top": "35%", "left": "12%" },
+      "anim": "fade-right",
+      "text": "hahaha",
+      "bubble_class": "bubble-left pink-border"
+    },
+    {
+      "img": "acp.png",
+      "pos": { "bottom": "15%", "left": "3%" },
+      "anim": "zoom-in",
+      "text": "kyu re makhan chor",
+      "bubble_class": "bubble-top yellow-border"
+    },
+    {
+      "img": "frog.png",
+      "pos": { "top": "15%", "right": "3%" },
+      "anim": "fade-down-left",
+      "text": "another day another reel",
+      "bubble_class": "bubble-left green-border"
+    },
+    {
+      "img": "doge.png",
+      "pos": { "top": "35%", "right": "12%" },
+      "anim": "fade-left",
+      "text": "life feels like this rn",
+      "bubble_class": "bubble-right orange-border"
+    },
+    {
+      "img": "tung.png",
+      "pos": { "bottom": "15%", "right": "3%" },
+      "anim": "fade-up-left",
+      "text": "Tung Sahur",
+      "bubble_class": "bubble-left yellow-border"
+    }
+  ]
+}

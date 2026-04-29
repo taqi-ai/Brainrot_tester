@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In - BrainRot Score</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .auth-container {
+            max-width: 450px;
+            width: 90%;
+            margin: 120px auto 50px;
+            padding: 40px;
+            border-radius: 30px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 600px) {
+            .auth-container {
+                margin: 100px auto 30px;
+                padding: 25px;
+            }
+            .auth-header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        .auth-header h1 {
+            font-size: 3rem;
+            color: var(--neon-pink);
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 0, 127, 0.4);
+        }
+
+        .auth-header p {
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--neon-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            background: rgba(0,0,0,0.4);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255,0,127,0.3);
+        }
+        
+        .auth-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body class="result-body">
+    <!-- BACKGROUND ANIMATION -->
+    <div class="bg-gradient"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar glass-nav">
+        <div class="logo">BrainRot<span>Score</span></div>
+        <a href="/" class="btn-main small-btn glow-effect" style="margin-top: 0;">HOME</a>
+    </nav>
+
+    <div class="auth-container glass-panel" data-aos="zoom-in">
+        <div class="auth-header">
+            <h1>WHO ARE YOU?</h1>
+            <p>Enter your gamer tag for the Leaderboard.</p>
+        </div>
+
+        <form id="signin-form">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="e.g. SkibidiMaster99" required autocomplete="off" maxlength="20">
+            </div>
+
+            <div class="auth-actions">
+                <button type="submit" class="btn-main glow-effect" style="width: 100%;">LOCK IN</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Handle sign in logic locally
+        document.getElementById('signin-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            if (username) {
+                localStorage.setItem('br_username', username);
+                window.location.href = '/';
+            }
+        });
+
+        // Pre-fill if already exists
+        window.onload = () => {
+            const existing = localStorage.getItem('br_username');
+            if (existing) {
+                document.getElementById('username').value = existing;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BrainRot Score - Test Your Internet Damage</title>
+    <meta name="description" content="Find out your BrainRot Score with this viral meme-based personality and knowledge quiz. Are you slightly cooked or deep fried?">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- BACKGROUND ANIMATION & MICRO-ELEMENTS -->
+    <div class="noise-overlay"></div>
+    <div class="bg-gradient"></div>
+    <div class="hero-radial-glow"></div>
+    <div class="micro-elements">
+        <!-- Stars -->
+        <div class="element star" style="top: 10%; left: 20%;">✦</div>
+        <div class="element star" style="top: 25%; left: 60%;">✧</div>
+        <div class="element star" style="top: 30%; left: 80%;">✧</div>
+        <div class="element star" style="top: 70%; left: 10%;">✦</div>
+        <div class="element star" style="top: 85%; left: 85%;">✧</div>
+        <div class="element star" style="top: 50%; left: 40%;">✦</div>
+        <div class="element star" style="top: 15%; left: 90%;">✧</div>
+        <div class="element star" style="top: 80%; left: 50%;">✦</div>
+        
+        <!-- Lightning -->
+        <div class="element bolt" style="top: 15%; left: 75%;">⚡</div>
+        <div class="element bolt" style="top: 60%; left: 25%;">⚡</div>
+        <div class="element bolt" style="top: 35%; left: 15%;">⚡</div>
+        <div class="element bolt" style="top: 75%; left: 70%;">⚡</div>
+        
+        <!-- Crosses -->
+        <div class="element cross" style="top: 45%; left: 15%;">+</div>
+        <div class="element cross" style="top: 25%; left: 85%;">×</div>
+        <div class="element cross" style="top: 10%; left: 45%;">+</div>
+        <div class="element cross" style="top: 65%; left: 80%;">×</div>
+        
+        <!-- Dots -->
+        <div class="element dot" style="top: 55%; left: 80%;">•</div>
+        <div class="element dot" style="top: 80%; left: 30%;">•</div>
+        <div class="element dot" style="top: 20%; left: 30%;">•</div>
+        <div class="element dot" style="top: 90%; left: 60%;">•</div>
+    </div>
+
+    <section id="hero">
+        <!-- Navbar -->
+        <nav class="navbar glass-nav">
+            <div class="logo">BrainRot<span>Score</span> 🧠</div>
+
+            <ul class="nav-links">
+                <li class="active" data-target="hero" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'})">Home</li>
+                <li onclick="window.location.href='/quiz'">Quiz</li>
+                <li data-target="leaderboard" onclick="document.getElementById('leaderboard').scrollIntoView({behavior: 'smooth'})">Leaderboard</li>
+                <li onclick="window.location.href='/about'">About</li>
+            </ul>
+
+            <div class="nav-right" style="display:flex; align-items:center; gap:15px;">
+                <div class="toggles" style="display:flex; flex-direction:column; gap:8px; align-items:flex-end; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;">
+                    <!-- Theme -->
+                    <div style="display:flex; align-items:center; gap:8px;" id="theme-btn">
+                        <div class="theme-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Day/Night Mode">🌙</div>
+                        <div class="slider-track theme-track" style="width: 40px; height: 20px; background: #444; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
+                            <div class="slider-knob theme-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        </div>
+                    </div>
+                    <!-- Sound -->
+                    <div style="display:flex; align-items:center; gap:8px;" id="sound-btn">
+                        <div class="sound-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Sound">🔊</div>
+                        <div class="slider-track sound-track" style="width: 40px; height: 20px; background: #ccc; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
+                            <div class="slider-knob sound-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 22px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-sign" id="auth-btn" onclick="window.location.href='/signin'">Sign In</button>
+            </div>
+        </nav>
+
+        <!-- 🔥 FLOATING MEMES (FROM config.json) -->
+        {% for icon in config.floating_icons %}
+            <div class="float font-{{ icon.img.split('.')[0] }} {{ icon.layer_class }}"
+                 onclick="playMemeSound('{{ icon.img.split('.')[0] }}')"
+                 data-aos="{{ icon.anim }}"
+                 style="
+                    {% for key, value in icon.pos.items() %}
+                        {{ key }}: {{ value }};
+                    {% endfor %}
+                 ">
+
+                <img src="{{ url_for('static', filename='assets/' + icon.img) }}" alt="Meme Icon">
+
+                <!-- Speech Bubble -->
+                <div class="bubble {{ icon.bubble_class }}">
+                    <div class="bubble-text">{{ icon.text }}</div>
+                    <div class="bubble-audio">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                        <div class="mini-waveform"></div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- HERO CONTENT -->
+        <div class="hero-center" data-aos="fade-up" style="position: relative;">
+            <!-- Mentally fried bubble -->
+            <div class="bubble mentally-fried-bubble pink-border">
+                <div class="bubble-text">mentally fried?</div>
+                <div class="bubble-audio">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18v-6a9 9 0 0 1 18 0v6"></path><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path></svg>
+                    <div class="mini-waveform"></div>
+                </div>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="hero-how" style="position:relative;">HOW <span class="hero-crown" onclick="playMemeSound('crown'); document.getElementById('leaderboard').scrollIntoView({behavior: 'smooth'})" title="Go to Leaderboard">👑</span></span><br>
+                <span class="hero-main">BRAIN-ROTTED!</span><br>
+                <span class="hero-are-you">ARE YOU?</span>
+            </h1>
+
+            <p class="sub">
+                10 questions. Infinite regret.<br>
+                Find out your <span class="highlight">BrainRot Score</span> now!
+            </p>
+
+            <div class="hero-actions" style="margin-top:20px;">
+                <button onclick="startQuiz()" class="btn-main glow-effect" style="display:inline-flex; align-items:center; gap:15px; font-family: 'Permanent Marker', cursive;">
+                    <span style="font-size:1.5rem; font-family: 'Outfit', sans-serif;">🧠</span> TEST YOURSELF! <span style="background:#000; color:#fff; border-radius:50%; width:24px; height:24px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-family: 'Outfit', sans-serif;">➔</span>
+                </button>
+            </div>
+
+            <p class="note" style="margin-top:25px; font-family: 'Permanent Marker', cursive; font-size: 1.2rem; letter-spacing: 1px;">(no cheating, we’re always watching 👀)</p>
+        </div>
+
+    <!-- FEATURES ROW -->
+    <div class="features-row" data-aos="fade-up">
+        <div class="feature-item">
+            <div class="feature-icon" style="color: var(--neon-pink);">🧠</div>
+            <div>
+                <h4>FUN QUIZ</h4>
+                <p>10 spicy questions about your internet life.</p>
+                <div class="mini-waveform-features"></div>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon" style="color: var(--neon-green);">📊</div>
+            <div>
+                <h4>PERSONALIZED RESULTS</h4>
+                <p>Get your score, stats, roast & a vibe check.</p>
+                <div class="mini-waveform-features"></div>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon" style="color: var(--neon-pink);">🔥</div>
+            <div>
+                <h4>HONEST ROAST</h4>
+                <p>We don't sugarcoat. You'll get cooked.</p>
+                <div class="mini-waveform-features"></div>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon" style="color: #ffcc00;">🏆</div>
+            <div>
+                <h4>LEADERBOARD</h4>
+                <p>See if you're a top 1% reel addict.</p>
+                <div class="mini-waveform-features"></div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Scroll Indicator -->
+    <div style="text-align: center; color: #666; font-size: 0.8rem; letter-spacing: 5px; margin-top: 30px; text-transform: uppercase;">
+        SCROLL TO BEGIN YOUR DESCENT<br>
+        <span style="color: var(--neon-pink); font-size: 1.2rem;">&or;</span>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="glass-section" data-aos="fade-up">
+        <h2 class="section-title" style="letter-spacing: 2px;">BRAINROT KINGS</h2>
+        <div class="leaderboard-grid">
+            {% for user in leaderboard %}
+                <div class="leaderboard-item" style="position: relative;">
+                    <span class="rank">#{{ loop.index }} {% if loop.index == 1 %}<span class="rank-crown">👑</span>{% endif %}</span>
+                    <span class="name">{{ user.Name }}</span>
+                    <span class="score">{{ user.Score }}</span>
+                </div>
+            {% endfor %}
+            {% if not leaderboard %}
+                <p>No players yet. Be the first!</p>
+            {% endif %}
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Set username on button
+        const username = localStorage.getItem('br_username');
+        if (username) {
+            document.getElementById('auth-btn').innerText = username;
+        }
+
+        // Scroll Spy for Navbar
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll(".nav-links li[data-target]");
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === entry.target.id) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.querySelector('.theme-icon');
+        const themeKnob = document.querySelector('.theme-knob');
+        const themeTrack = document.querySelector('.theme-track');
+        const body = document.body;
+        
+        function updateThemeUI(isLight) {
+            if (isLight) {
+                body.classList.add('light-mode');
+                themeIcon.innerText = '☀️';
+                themeKnob.style.left = '22px';
+                themeTrack.style.background = '#ccc';
+            } else {
+                body.classList.remove('light-mode');
+                themeIcon.innerText = '🌙';
+                themeKnob.style.left = '2px';
+                themeTrack.style.background = '#444';
+            }
+        }
+
+        let isLight = localStorage.getItem('br_theme') === 'light';
+        updateThemeUI(isLight);
+
+        themeBtn.addEventListener('click', () => {
+            isLight = !isLight;
+            localStorage.setItem('br_theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        });
+
+        // Sound Toggle
+        const soundBtn = document.getElementById('sound-btn');
+        const soundIcon = document.querySelector('.sound-icon');
+        const soundKnob = document.querySelector('.sound-knob');
+        const soundTrack = document.querySelector('.sound-track');
+        let soundEnabled = localStorage.getItem('br_sound') !== 'off'; // default to on
+        
+        function updateSoundUI(isEnabled) {
+            if (isEnabled) {
+                soundIcon.innerText = '🔊';
+                soundKnob.style.left = '22px';
+                soundTrack.style.background = '#ccc';
+            } else {
+                soundIcon.innerText = '🔇';
+                soundKnob.style.left = '2px';
+                soundTrack.style.background = '#444';
+            }
+        }
+        
+        updateSoundUI(soundEnabled);
+        
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('br_sound', soundEnabled ? 'on' : 'off');
+            updateSoundUI(soundEnabled);
+        });
+
+        function startQuiz() {
+            const name = localStorage.getItem('br_username');
+            if (!name) {
+                // If no name, redirect to signin first for leaderboard glory
+                window.location.href = '/signin';
+            } else {
+                window.location.href = '/quiz';
+            }
+        }
+
+        let currentMemeAudio = null;
+
+        function playMemeSound(name) {
+            if (localStorage.getItem('br_sound') === 'off') return;
+            
+            if (currentMemeAudio) {
+                currentMemeAudio.pause();
+                currentMemeAudio.currentTime = 0;
+            }
+            
+            currentMemeAudio = new Audio(`/static/assets/sounds/${name}.mp3`);
+            currentMemeAudio.volume = 0.5;
+            currentMemeAudio.play().catch(e => console.log("Audio play failed:", e));
+        }
+    </script>
+</body>
+</html>

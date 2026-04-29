@@ -1,0 +1,232 @@
+[
+  {
+    "id": 1,
+    "question": "You open a YouTube video…",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      {
+        "text": "Finish full video like a monk 🧘♂️",
+        "weight": 4
+      },
+      {
+        "text": "Watch decent part (lowkey invested)",
+        "weight": 3
+      },
+      {
+        "text": "Watch 10 sec then next 👉",
+        "weight": 2
+      },
+      {
+        "text": "Skip in 2 sec max (nah this ain’t hitting 💀)",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Instagram opens and suddenly…",
+    "category": "Control 🎯",
+    "options": [
+      {
+        "text": "Close app instantly (built diff 🗿)",
+        "weight": 4
+      },
+      {
+        "text": "Scroll like crazy but aware",
+        "weight": 2
+      },
+      {
+        "text": "Watch few, then exit",
+        "weight": 3
+      },
+      {
+        "text": "30 min gone, I became NPC 🤖",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "Last reel you watched was about?",
+    "category": "Memory 🧠",
+    "options": [
+      {
+        "text": "Bro idk my brain is fried 💀",
+        "weight": 1
+      },
+      {
+        "text": "Something funny ig",
+        "weight": 2
+      },
+      {
+        "text": "I kinda remember",
+        "weight": 3
+      },
+      {
+        "text": "I remember exactly (plot + details)",
+        "weight": 4
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "While studying you…",
+    "category": "Focus 🧘‍♂️",
+    "options": [
+      {
+        "text": "Lock in HARD (sigma grind 🗿📚)",
+        "weight": 4
+      },
+      {
+        "text": "Stay focused mostly",
+        "weight": 3
+      },
+      {
+        "text": "Check phone every few min",
+        "weight": 2
+      },
+      {
+        "text": "Alt+Tab Olympics every 1 min",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "You feel bored for 5 sec…",
+    "category": "Dopamine 🎰",
+    "options": [
+      {
+        "text": "Think… then still open phone",
+        "weight": 2
+      },
+      {
+        "text": "Phone unlock speed = Flash ⚡",
+        "weight": 1
+      },
+      {
+        "text": "Resist sometimes",
+        "weight": 3
+      },
+      {
+        "text": "Sit peacefully",
+        "weight": 4
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "question": "Your usual state:",
+    "category": "Energy ⚡",
+    "options": [
+      {
+        "text": "Mostly one thing",
+        "weight": 3
+      },
+      {
+        "text": "Single-task final boss 🎯",
+        "weight": 4
+      },
+      {
+        "text": "2 things at once always",
+        "weight": 2
+      },
+      {
+        "text": "Reels + chat + YouTube chaos 💀",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "question": "After distraction, your focus:",
+    "category": "Memory 🧠",
+    "options": [
+      {
+        "text": "Takes ages to come back",
+        "weight": 2
+      },
+      {
+        "text": "Instant reset",
+        "weight": 4
+      },
+      {
+        "text": "Gone forever 💀",
+        "weight": 1
+      },
+      {
+        "text": "Comes back in few min",
+        "weight": 3
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "question": "Your content diet:",
+    "category": "Dopamine 🎰",
+    "options": [
+      {
+        "text": "Mix of both",
+        "weight": 3
+      },
+      {
+        "text": "Shorts / reels mostly",
+        "weight": 2
+      },
+      {
+        "text": "Long vids, podcasts, books",
+        "weight": 4
+      },
+      {
+        "text": "Pure memes + brainrot",
+        "weight": 1
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "question": "Notification pops…",
+    "category": "Control 🎯",
+    "options": [
+      {
+        "text": "Ignore easily",
+        "weight": 4
+      },
+      {
+        "text": "Sometimes ignore",
+        "weight": 3
+      },
+      {
+        "text": "CLICK NOW 😤",
+        "weight": 1
+      },
+      {
+        "text": "Almost always check",
+        "weight": 2
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "question": "After long scrolling session:",
+    "category": "Energy ⚡",
+    "options": [
+      {
+        "text": "Brain = mashed potato 💀",
+        "weight": 1
+      },
+      {
+        "text": "Normal",
+        "weight": 3
+      },
+      {
+        "text": "Energized",
+        "weight": 4
+      },
+      {
+        "text": "Slightly tired",
+        "weight": 2
+      }
+    ]
+  }
+]

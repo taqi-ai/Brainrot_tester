@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your BrainRot Result</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="result-body {% if pct >= 70 %}theme-red{% elif pct <= 30 %}theme-green{% else %}theme-yellow{% endif %}">
+    <!-- BACKGROUND ANIMATION -->
+    <div class="bg-gradient"></div>
+
+    <div class="container glass-panel">
+
+        <!-- HEADER -->
+        <header class="result-header">
+            <div class="logo">BrainRot<span>Score</span></div>
+            <a href="/" class="btn-main small-btn glow-effect">HOME</a>
+        </header>
+
+        <!-- MAIN -->
+        <main class="result-main">
+
+            <!-- LEFT -->
+            <div data-aos="fade-right" class="result-text-area">
+
+                <h3 class="result-subtitle">YOUR RESULT</h3>
+
+                <h1 class="result-score">
+                    {{ score }}<span class="score-denominator">/40</span>
+                </h1>
+
+                <p class="meme-label highlight">
+                    {{ meme.label }}
+                </p>
+
+                <h2 class="brainrot-index" style="color: #fff; margin-bottom: 20px;">
+                    Your Brain Rot: {{ pct }}% {% if pct >= 70 %}💀{% elif pct <= 30 %}🌱{% else %}👀{% endif %}
+                </h2>
+
+                <!-- ROAST -->
+                <div class="feedback-card">
+                    <h4>🔥 Roast</h4>
+                    <p>{{ meme.roast }}</p>
+                </div>
+
+                <!-- POETRY -->
+                <div class="feedback-card">
+                    <h4>🌿 Poetry</h4>
+                    <p class="poetry-text">{{ meme.poetry }}</p>
+                </div>
+
+            </div>
+
+            <!-- RIGHT -->
+            <div data-aos="fade-left" class="result-chart-area">
+
+                <h3 class="chart-title">ANALYSIS</h3>
+
+                <img id="radar-chart"
+                     src="{{ url_for('static', filename='charts/' + chart) }}"
+                     alt="Radar Chart of BrainRot Damage">
+
+                <div class="action-buttons">
+                    <button class="btn-main glow-effect" onclick="downloadResult()">DOWNLOAD</button>
+                    <a href="/quiz" class="btn-main secondary-btn glow-effect">RETRY</a>
+                    <button class="btn-main share-btn-wa" onclick="shareWhatsApp()">Share on WhatsApp</button>
+                    <button class="btn-main share-btn-ig" onclick="shareInstagram()">Share on Instagram</button>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- SOUND & SHARING -->
+    <script>
+        window.onload = () => {
+            const audio = new Audio("/static/assets/sounds/{{ meme.sound }}");
+            audio.volume = 0.6;
+            audio.play().catch((err) => {
+                console.log("Sound could not be played automatically", err);
+            });
+        }
+
+        function shareWhatsApp() {
+            const text = `My BrainRot Score is {{ score }}/40 ({{ pct }}% Brain Rot)! 🧠💀 Check yours here: ${window.location.origin}`;
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        async function shareInstagram() {
+            const shareData = {
+                title: 'BrainRot Score',
+                text: `My BrainRot Score is {{ score }}/40 ({{ pct }}% Brain Rot)! 🧠💀`,
+                url: window.location.origin
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    console.log('Share failed:', err);
+                }
+            } else {
+                // Fallback: Copy to clipboard
+                const text = `${shareData.text} Check yours at ${shareData.url}`;
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('Result copied to clipboard! Share it on your Instagram Story 📸');
+                });
+            }
+        }
+    </script>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+    </script>
+
+</body>
+</html>

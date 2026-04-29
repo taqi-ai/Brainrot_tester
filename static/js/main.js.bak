@@ -1,0 +1,147 @@
+/**
+ * BrainRot Quiz Engine (FINAL)
+ */
+
+class BrainRotQuiz {
+    constructor(questions) {
+        this.questions = questions;
+        this.currentIndex = 0;
+        this.answers = [];
+        this.categoryScores = {};
+        this.categoryCounts = {};
+
+        this.quizContainer = document.getElementById('quiz-flow');
+        this.progressBar = document.querySelector('.progress-fill');
+
+        this.init();
+    }
+
+    init() {
+        this.renderQuestion();
+        this.updateProgress();
+    }
+
+    playSound(type) {
+        if (localStorage.getItem('br_sound') === 'off') return;
+        const audio = new Audio(`/static/assets/sounds/${type}.mp3`);
+        audio.volume = 0.4;
+        audio.play().catch(() => {});
+    }
+
+    renderQuestion() {
+        const q = this.questions[this.currentIndex];
+
+        this.quizContainer.style.opacity = 0;
+
+        setTimeout(() => {
+            this.quizContainer.innerHTML = `
+                <div class="question-card" data-aos="fade-right">
+                    <span class="category-tag">${q.category}</span>
+                    <h2>${q.question}</h2>
+
+                    <div class="options-grid">
+                        ${q.options.map(opt => `
+                            <button class="option-btn"
+                                onclick="quiz.handleAnswer(${opt.weight}, '${q.category}', ${'correct' in opt ? opt.correct : null}, this)">
+                                ${opt.text}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            this.quizContainer.style.opacity = 1;
+            AOS.refresh();
+
+        }, 200);
+    }
+
+    handleAnswer(weight, category, isCorrect, btn) {
+
+        // SOUND + VISUAL FEEDBACK
+        if (isCorrect === true) {
+            this.playSound('correct');
+            btn.classList.add('correct');
+        } else if (isCorrect === false) {
+            this.playSound('wrong');
+            btn.classList.add('wrong');
+        } else {
+            this.playSound('click');
+        }
+
+        // Disable all buttons
+        document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
+        // Save score
+        this.answers.push(weight);
+        this.categoryScores[category] = (this.categoryScores[category] || 0) + weight;
+        this.categoryCounts[category] = (this.categoryCounts[category] || 0) + 1;
+
+        setTimeout(() => {
+            if (this.currentIndex < this.questions.length - 1) {
+                this.currentIndex++;
+                this.renderQuestion();
+                this.updateProgress();
+            } else {
+                this.submitResults();
+            }
+        }, 500);
+    }
+
+    updateProgress() {
+        const progress = ((this.currentIndex + 1) / this.questions.length) * 100;
+        if (this.progressBar) {
+            this.progressBar.style.width = `${progress}%`;
+        }
+    }
+
+    async submitResults() {
+        const normalizedCategories = {};
+
+        for (let cat in this.categoryScores) {
+            normalizedCategories[cat] = Math.round(
+                this.categoryScores[cat] / this.categoryCounts[cat]
+            );
+        }
+
+        const username = localStorage.getItem('br_username') || "Anonymous";
+
+        try {
+            const response = await fetch('/submit', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    username: username,
+                    answers: this.answers,
+                    categories: normalizedCategories
+                })
+            });
+
+            const result = await response.json();
+
+            localStorage.setItem('last_result', JSON.stringify(result));
+            window.location.href = `/result?score=${result.score}&chart=${result.chart}`;
+
+        } catch (err) {
+            console.error("Submission failed:", err);
+        }
+    }
+}
+
+
+/* HOVER SOUND */
+function playHoverSound() {
+    if (localStorage.getItem('br_sound') === 'off') return;
+    const audio = new Audio('/static/assets/sounds/hover.mp3');
+    audio.volume = 0.2;
+    audio.play().catch(() => {});
+}
+
+
+/* DOWNLOAD RESULT */
+function downloadResult() {
+    const link = document.createElement('a');
+    link.href = document.getElementById('radar-chart').src;
+    link.download = 'BrainRotScore.png';
+    link.click();
+}

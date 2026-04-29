@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BrainRot Quiz - 10 Questions to Doom</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+
+<body class="quiz-body">
+    <!-- BACKGROUND ANIMATION -->
+    <div class="bg-gradient"></div>
+    <div class="hero-radial-glow"></div>
+    <div class="micro-elements">
+        <!-- Stars -->
+        <div class="element star" style="top: 10%; left: 20%;">✦</div>
+        <div class="element star" style="top: 25%; left: 60%;">✧</div>
+        <div class="element star" style="top: 30%; left: 80%;">✧</div>
+        <div class="element star" style="top: 70%; left: 10%;">✦</div>
+        <div class="element star" style="top: 85%; left: 85%;">✧</div>
+        <div class="element star" style="top: 50%; left: 40%;">✦</div>
+        <div class="element star" style="top: 15%; left: 90%;">✧</div>
+        <div class="element star" style="top: 80%; left: 50%;">✦</div>
+        
+        <!-- Lightning -->
+        <div class="element bolt" style="top: 15%; left: 75%;">⚡</div>
+        <div class="element bolt" style="top: 60%; left: 25%;">⚡</div>
+        <div class="element bolt" style="top: 35%; left: 15%;">⚡</div>
+        <div class="element bolt" style="top: 75%; left: 70%;">⚡</div>
+        
+        <!-- Crosses -->
+        <div class="element cross" style="top: 45%; left: 15%;">+</div>
+        <div class="element cross" style="top: 25%; left: 85%;">×</div>
+        <div class="element cross" style="top: 10%; left: 45%;">+</div>
+        <div class="element cross" style="top: 65%; left: 80%;">×</div>
+        
+        <!-- Dots -->
+        <div class="element dot" style="top: 55%; left: 80%;">•</div>
+        <div class="element dot" style="top: 80%; left: 30%;">•</div>
+        <div class="element dot" style="top: 20%; left: 30%;">•</div>
+        <div class="element dot" style="top: 90%; left: 60%;">•</div>
+    </div>
+
+    <div class="quiz-container glass-panel">
+        <!-- NAV -->
+        <nav class="quiz-nav">
+            <div class="logo quiz-logo">BrainRot<span>Score</span> 🧠</div>
+            <div class="nav-right" style="display:flex; align-items:center; gap:15px;">
+                <div class="toggles" style="display:flex; flex-direction:column; gap:8px; align-items:flex-end; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;">
+                    <!-- Theme -->
+                    <div style="display:flex; align-items:center; gap:8px;" id="theme-btn">
+                        <div class="theme-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Day/Night Mode">🌙</div>
+                        <div class="slider-track theme-track" style="width: 40px; height: 20px; background: #444; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
+                            <div class="slider-knob theme-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 2px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        </div>
+                    </div>
+                    <!-- Sound -->
+                    <div style="display:flex; align-items:center; gap:8px;" id="sound-btn">
+                        <div class="sound-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Sound">🔊</div>
+                        <div class="slider-track sound-track" style="width: 40px; height: 20px; background: #ccc; border-radius: 20px; position: relative; cursor: pointer; transition: 0.3s; box-shadow: inset 0 0 5px rgba(0,0,0,0.5);">
+                            <div class="slider-knob sound-knob" style="width: 16px; height: 16px; background: #fff; border-radius: 50%; position: absolute; top: 2px; left: 22px; transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/" class="btn-main small-btn glow-effect">Home</a>
+            </div>
+        </nav>
+
+        <!-- PROGRESS -->
+        <div class="progress-container">
+            <div class="progress-fill"></div>
+        </div>
+
+        <!-- QUIZ -->
+        <div id="quiz-flow" class="quiz-flow-container"></div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- DATA -->
+    <script>
+        const questions = {{ questions | tojson }};
+        const quiz = new BrainRotQuiz(questions);
+    </script>
+    
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.querySelector('.theme-icon');
+        const themeKnob = document.querySelector('.theme-knob');
+        const themeTrack = document.querySelector('.theme-track');
+        const body = document.body;
+        
+        function updateThemeUI(isLight) {
+            if (isLight) {
+                body.classList.add('light-mode');
+                themeIcon.innerText = '☀️';
+                themeKnob.style.left = '22px';
+                themeTrack.style.background = '#ccc';
+            } else {
+                body.classList.remove('light-mode');
+                themeIcon.innerText = '🌙';
+                themeKnob.style.left = '2px';
+                themeTrack.style.background = '#444';
+            }
+        }
+
+        let isLight = localStorage.getItem('br_theme') === 'light';
+        updateThemeUI(isLight);
+
+        themeBtn.addEventListener('click', () => {
+            isLight = !isLight;
+            localStorage.setItem('br_theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        });
+
+        // Sound Toggle
+        const soundBtn = document.getElementById('sound-btn');
+        const soundIcon = document.querySelector('.sound-icon');
+        const soundKnob = document.querySelector('.sound-knob');
+        const soundTrack = document.querySelector('.sound-track');
+        let soundEnabled = localStorage.getItem('br_sound') !== 'off'; // default to on
+        
+        function updateSoundUI(isEnabled) {
+            if (isEnabled) {
+                soundIcon.innerText = '🔊';
+                soundKnob.style.left = '22px';
+                soundTrack.style.background = '#ccc';
+            } else {
+                soundIcon.innerText = '🔇';
+                soundKnob.style.left = '2px';
+                soundTrack.style.background = '#444';
+            }
+        }
+        
+        updateSoundUI(soundEnabled);
+        
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('br_sound', soundEnabled ? 'on' : 'off');
+            updateSoundUI(soundEnabled);
+        });
+    </script>
+</body>
+</html>
