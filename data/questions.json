@@ -328,5 +328,83 @@
       { "text": "Listen to music/podcast", "weight": 3 },
       { "text": "Mindful eating, tasting the food 🍲", "weight": 4 }
     ]
-  }
+  },
+  {
+  "id": 31,
+  "question": "‘Arey kehna kya chahte ho?’ sunte hi...",
+  "category": "Memory 🧠",
+  "options": [
+    { "text": "Full meme yaad aa jata 😭", "weight": 1 },
+    { "text": "Instant smile", "weight": 2 },
+    { "text": "Heard it before", "weight": 3 },
+    { "text": "No clue bro", "weight": 4 }
+  ]
+},
+{
+  "id": 32,
+  "question": "CID wala ‘Daya, darwaza tod do!’ reel aaye toh...",
+  "category": "Control 🎯",
+  "options": [
+    { "text": "Full dekhta hu 😂", "weight": 1 },
+    { "text": "Thoda dekhta hu", "weight": 2 },
+    { "text": "Scroll kar deta", "weight": 3 },
+    { "text": "Never watches memes 🗿", "weight": 4 }
+  ]
+},
+{
+  "id": 33,
+  "question": "Amitabh Bachchan voice meme sunte hi...",
+  "category": "Memory 🧠",
+  "options": [
+    { "text": "Comment section me ghus jata 😭", "weight": 1 },
+    { "text": "Hasta hu", "weight": 2 },
+    { "text": "Smile only", "weight": 3 },
+    { "text": "No reaction", "weight": 4 }
+  ]
+},
+{
+  "id": 34,
+  "question": "Standup comedy short starts and then...",
+  "category": "Dopamine 🎰",
+  "options": [
+    { "text": "1 short = 20 shorts 💀", "weight": 1 },
+    { "text": "Watch few only", "weight": 2 },
+    { "text": "One and leave", "weight": 3 },
+    { "text": "Skip instantly", "weight": 4 }
+  ]
+},
+{
+  "id": 35,
+  "question": "‘So beautiful, so elegant…’ reel aaye toh...",
+  "category": "Control 🎯",
+  "options": [
+    { "text": "Audio complete karta hu 😭", "weight": 1 },
+    { "text": "Recognize instantly", "weight": 2 },
+    { "text": "Seen somewhere", "weight": 3 },
+    { "text": "Never heard it", "weight": 4 }
+  ]
+},
+{
+  "id": 36,
+  "question": "‘Ye kya dekh liya maine 😭’ moment kab aata hai?",
+  "category": "Energy ⚡",
+  "options": [
+    { "text": "Har din reels me", "weight": 1 },
+    { "text": "Kabhi kabhi", "weight": 2 },
+    { "text": "Rarely", "weight": 3 },
+    { "text": "Never", "weight": 4 }
+  ]
+},
+{
+  "id": 37,
+  "question": "‘Kuch toh gadbad hai…’ sunte hi...",
+  "category": "Memory 🧠",
+  "options": [
+    { "text": "ACP Pradyuman mode 😎", "weight": 1 },
+    { "text": "Recognize instantly", "weight": 2 },
+    { "text": "Heard before", "weight": 3 },
+    { "text": "No idea", "weight": 4 }
+  ]
+}
+
 ]
