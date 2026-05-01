@@ -430,12 +430,12 @@
 },
 {
   "id": 40,
-  "question": "Aajkal tera mood zyada kya hai?",
+  "question": "Padhte nahi hain, sirf masti karte hain",
   "category": "Energy ⚡",
   "options": [
     { "text": "‘Arey bhai kya ho raha hai’ 😭", "weight": 1 },
-    { "text": "Thoda chaos", "weight": 2 },
-    { "text": "Manageable", "weight": 3 },
+    { "text": "Thoda ruko sir ji", "weight": 2 },
+    { "text": "Main nahi bolunga", "weight": 3 },
     { "text": "Sigma arc 🗿", "weight": 4 }
   ]
 }
