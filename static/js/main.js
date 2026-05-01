@@ -6,7 +6,7 @@ class BrainRotQuiz {
     constructor(questions) {
         this.questions = questions;
         this.currentIndex = 0;
-        this.answers = [];
+        this.answers = [];  
         this.categoryScores = {};
         this.categoryCounts = {};
 
