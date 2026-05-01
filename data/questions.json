@@ -320,13 +320,13 @@
   },
   {
     "id": 30,
-    "question": "When eating alone:",
+    "question": "Kya ye kya bool rahe ho !!!!:",
     "category": "Control 🎯",
     "options": [
-      { "text": "Cannot swallow without a video playing", "weight": 1 },
+      { "text": "Listen before", "weight": 1 },
       { "text": "Scroll while eating", "weight": 2 },
       { "text": "Listen to music/podcast", "weight": 3 },
-      { "text": "Mindful eating, tasting the food 🍲", "weight": 4 }
+      { "text": "ACP Pradyuman mode 😎", "weight": 4 }
     ]
   },
   {
