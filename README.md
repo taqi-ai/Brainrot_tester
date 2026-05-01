@@ -147,5 +147,6 @@ If your score is low…
 ## Feel free to test it out at  
 https://brainrot-tester.onrender.com/
 ### Contributions
-- Harsh: Added minor documentation update
-- Harsh: Added final documentation update
+- Harsh: Added minor documentation update and final documentation update.
+- Ujjwal: Build a backend code and make a major contribution in building UI/UX.
+
