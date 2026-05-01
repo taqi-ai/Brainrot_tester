@@ -149,4 +149,5 @@ https://brainrot-tester.onrender.com/
 ### Contributions
 - Harsh: Added minor documentation update and final documentation update.
 - Ujjwal: Build a backend code and make a major contribution in building UI/UX.
-
+- Taqi (Leader):
+- Sahitya:
