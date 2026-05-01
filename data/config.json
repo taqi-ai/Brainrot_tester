@@ -7,7 +7,7 @@
       "text": "bro is cooked",
       "bubble_class": "bubble-right pink-border"
     },
-    {
+    {  
       "img": "hehehe.png",
       "pos": { "top": "35%", "left": "12%" },
       "anim": "fade-right",
