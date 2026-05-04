@@ -14,7 +14,7 @@ class BrainRotQuiz {
         this.progressBar = document.querySelector('.progress-fill');
         this.timerBar = null;
         this.timerInterval = null;
-        this.timeLimit = 5000; // 5 seconds
+        this.timeLimit = 20000; // 20 seconds
 
         this.engagementTexts = ["Analyzing attention... 🧠", "Tracking dopamine hits... ⚡", "Detecting NPC behavior... 🤖", "Measuring brain rot... 💀"];
         this.memeMoments = ["Bro is cooked 💀", "Focus left the chat 🏃", "TikTok ruined you 😭"];
