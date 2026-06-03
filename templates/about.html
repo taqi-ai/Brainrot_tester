@@ -61,7 +61,7 @@
         .about-content p {
             line-height: 1.8;
             font-size: 1.2rem;
-            color: #ccc;
+            color: var(--text-muted);
             margin-bottom: 20px;
         }
 
@@ -73,7 +73,7 @@
         }
 
         .meme-item {
-            background: rgba(0,0,0,0.4);
+            background: var(--glass-bg);
             padding: 20px;
             border-radius: 20px;
             text-align: center;
@@ -94,14 +94,14 @@
         }
 
         .meme-item h4 {
-            color: white;
+            color: var(--text-main);
             font-size: 1.2rem;
             margin-bottom: 10px;
         }
 
         .meme-item p {
             font-size: 0.9rem;
-            color: #888;
+            color: var(--text-muted);
             margin: 0;
             line-height: 1.4;
         }
@@ -119,6 +119,27 @@
         .creator-name:hover {
             transform: translateY(-5px) scale(1.1) rotate(-3deg);
             text-shadow: 0 0 15px rgba(204, 255, 0, 0.6);
+        }
+
+        /* Light Mode Overrides */
+        body.light-mode .about-header h1 {
+            color: var(--neon-pink);
+            text-shadow: none;
+        }
+        body.light-mode .about-header h1:hover {
+            text-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+        }
+        body.light-mode .about-content h2 {
+            color: #000;
+            border-bottom-color: var(--glass-border);
+        }
+        body.light-mode .creator-name {
+            color: var(--neon-pink);
+            text-shadow: none;
+        }
+        body.light-mode .about-content h2:hover,
+        body.light-mode .creator-name:hover {
+            text-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
         }
     </style>
 </head>
@@ -168,7 +189,25 @@
             <li class="active">About</li>
         </ul>
 
-        <button class="btn-sign" id="auth-btn" onclick="window.location.href='/signin'">Sign In</button>
+        <div class="nav-right" style="display:flex; align-items:center; gap:15px;">
+            <div class="toggles" style="display:flex; flex-direction:column; gap:8px; align-items:flex-end; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 12px;">
+                <!-- Theme -->
+                <div style="display:flex; align-items:center; gap:8px;" id="theme-btn">
+                    <div class="theme-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Day/Night Mode">🌙</div>
+                    <div class="slider-track theme-track">
+                        <div class="slider-knob theme-knob"></div>
+                    </div>
+                </div>
+                <!-- Sound -->
+                <div style="display:flex; align-items:center; gap:8px;" id="sound-btn">
+                    <div class="sound-icon" style="font-size:1.1rem; line-height:1; width:20px; text-align:center;" title="Toggle Sound">🔊</div>
+                    <div class="slider-track sound-track">
+                        <div class="slider-knob sound-knob"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-sign" id="auth-btn" onclick="window.location.href='/signin'">Sign In</button>
+        </div>
     </nav>
 
     <div class="about-container glass-panel" data-aos="fade-up">
@@ -213,17 +252,29 @@
                 </div>
             </div>
 
-            <h2>Creator's Note</h2>
-            <p style="font-style: italic; border-left: 4px solid var(--neon-pink); padding-left: 15px; margin-top: 30px; margin-bottom: 50px;">
+            <h2>The BrainRot Core Team</h2>
+            <p style="font-style: italic; border-left: 4px solid var(--neon-pink); padding-left: 15px; margin-top: 30px; margin-bottom: 30px;">
                 "My therapist told me to stop doomscrolling and channel my energy into something productive... so I built a tool to diagnose how severely cooked our attention spans are. You're welcome."
                 <br><br>
-                — <span class="creator-name">Taqi</span>
+                — <span class="creator-name">Taqi</span> <span style="color: #888; font-size: 0.9em;">(Team Lead)</span>
+            </p>
+
+            <p style="font-style: italic; border-left: 4px solid var(--neon-green); padding-left: 15px; margin-bottom: 30px;">
+                "I optimized the backend so it can handle 10,000 users losing their focus simultaneously. Still couldn't optimize my own sleep schedule though."
                 <br><br>
-                — <span class="creator-name">Sahitya Srivastava</span>
+                — <span class="creator-name">Ujjwal</span>
+            </p>
+
+            <p style="font-style: italic; border-left: 4px solid #ffcc00; padding-left: 15px; margin-bottom: 30px;">
+                "I was supposed to write the documentation, but I was too busy driving my Fortuner around my dad's newly installed telecom towers to get a 5G signal strong enough to load TikTok without buffering."
                 <br><br>
-                — <span class="creator-name">Harsh Gupta</span>
+                — <span class="creator-name">Sahitya</span>
+            </p>
+
+            <p style="font-style: italic; border-left: 4px solid #00ffcc; padding-left: 15px; margin-bottom: 50px;">
+                "I ensure the dark mode stays flawless, because looking at my own daily screen time in light mode is too traumatizing."
                 <br><br>
-                — <span class="creator-name">Ujjwal Gupta</span>
+                — <span class="creator-name">Harsh</span>
             </p>
 
             <div style="text-align: center; margin-top: 50px;">
@@ -246,6 +297,57 @@
         if (username) {
             document.getElementById('auth-btn').innerText = username;
         }
+
+        // Theme Toggle Logic
+        const themeBtn = document.getElementById('theme-btn');
+        const themeIcon = document.querySelector('.theme-icon');
+        const themeTrack = document.querySelector('.theme-track');
+        const body = document.body;
+        
+        function updateThemeUI(isLight) {
+            if (isLight) {
+                body.classList.add('light-mode');
+                themeIcon.innerText = '☀️';
+                themeTrack.classList.add('active');
+            } else {
+                body.classList.remove('light-mode');
+                themeIcon.innerText = '🌙';
+                themeTrack.classList.remove('active');
+            }
+        }
+
+        let isLight = localStorage.getItem('br_theme') === 'light';
+        updateThemeUI(isLight);
+
+        themeBtn.addEventListener('click', () => {
+            isLight = !isLight;
+            localStorage.setItem('br_theme', isLight ? 'light' : 'dark');
+            updateThemeUI(isLight);
+        });
+
+        // Sound Toggle Logic
+        const soundBtn = document.getElementById('sound-btn');
+        const soundIcon = document.querySelector('.sound-icon');
+        const soundTrack = document.querySelector('.sound-track');
+        let soundEnabled = localStorage.getItem('br_sound') !== 'off';
+        
+        function updateSoundUI(isEnabled) {
+            if (isEnabled) {
+                soundIcon.innerText = '🔊';
+                soundTrack.classList.add('active');
+            } else {
+                soundIcon.innerText = '🔇';
+                soundTrack.classList.remove('active');
+            }
+        }
+        
+        updateSoundUI(soundEnabled);
+        
+        soundBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            localStorage.setItem('br_sound', soundEnabled ? 'on' : 'off');
+            updateSoundUI(soundEnabled);
+        });
     </script>
 </body>
 </html>

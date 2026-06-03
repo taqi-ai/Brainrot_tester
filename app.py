@@ -21,11 +21,38 @@ class ResultAnalyzer:
     def __init__(self, scores, categories):
         self.scores = np.array(scores)
         self.categories = categories
+        # Load scoring configuration (max score range and tier definitions)
+        config_path = os.path.join('data', 'score_config.json')
+        with open(config_path, 'r', encoding='utf-8') as f:
+            self.config = json.load(f)
+        self.raw_max_score = self.config.get('raw_max_score', 40)
+        self.max_score = self.config.get('max_score', 100)
 
     def calculate_total(self):
         if len(self.scores) == 0:
             return 0
         return int(np.sum(self.scores))
+
+    def scaled_total(self, raw_total: int) -> int:
+        """Scale raw total to the configured max_score range."""
+        if self.raw_max_score == 0:
+            return 0
+        return int(round(raw_total * (self.max_score / self.raw_max_score)))
+
+    def percentage(self, score: int, is_scaled: bool = False) -> int:
+        """Compute brainrot percentage where 0% = perfect focus (max_score) and 100% = worst (0)."""
+        scaled = score if is_scaled else self.scaled_total(score)
+        return int(max(0, min(100, ((self.max_score - scaled) / self.max_score) * 100)))
+
+    def tier_for_score(self, score: int, is_scaled: bool = False):
+        """Return the tier dict matching the current percentage."""
+        pct = self.percentage(score, is_scaled=is_scaled)
+        for tier in self.config.get('tiers', []):
+            if tier['min_pct'] <= pct <= tier['max_pct']:
+                return tier
+        return self.config.get('tiers', [])[-1]
+
+
 
     def generate_radar_chart(self, filename):
         if not self.categories:
@@ -41,6 +68,9 @@ class ResultAnalyzer:
         fig, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
         fig.patch.set_facecolor('#0a0a0a')
         ax.set_facecolor('#111')
+
+        # Fix auto-scaling so max radius is always 4 (max option weight)
+        ax.set_ylim(0, 4)
 
         ax.fill(angles, values, color='#ff007f', alpha=0.25)
         ax.plot(angles, values, color='#ff007f', linewidth=2)
@@ -154,21 +184,26 @@ def signin():
 def result():
     score = request.args.get('score', 0)
     chart = request.args.get('chart', '')
-    
+
     memes = load_json('memes.json')
     try:
         score_val = int(score)
     except ValueError:
         score_val = 0
-        
-    selected_meme = max(
-        (m for m in memes if score_val >= m['min_score']),
-        key=lambda x: x['min_score']
-    )
-    
+
+    # Use new scoring config to determine tier and percentage
+    analyzer_dummy = ResultAnalyzer([], {})
+    tier = analyzer_dummy.tier_for_score(score_val, is_scaled=True)
+    brainrot_pct = analyzer_dummy.percentage(score_val, is_scaled=True)
+
+    # Find meme block matching the tier label
+    selected_meme = next((m for m in memes if m['label'] == tier['label']), None)
+    if not selected_meme:
+        selected_meme = memes[0]
+
     roast = random.choice(selected_meme["roasts"])
-    # Just grab all the poetry lines from the array (it's 2 lines now)
-    poetry_lines = selected_meme["poetry"]
+    # Randomly pick up to two poetry lines
+    poetry_lines = random.sample(selected_meme["poetry"], min(2, len(selected_meme["poetry"])) )
 
     final_meme = {
         "label": selected_meme["label"],
@@ -177,9 +212,7 @@ def result():
         "sound": selected_meme["sound"]
     }
 
-    brainrot_pct = max(0, min(100, int(((40 - score_val) / 30.0) * 100)))
-
-    return render_template('result.html', score=score, chart=chart, meme=final_meme, pct=brainrot_pct)
+    return render_template('result.html', score=score, chart=chart, meme=final_meme, pct=brainrot_pct, max_score=analyzer_dummy.max_score)
 
 
 @app.route('/submit', methods=['POST'])
@@ -196,22 +229,21 @@ def submit():
     chart_file = f"chart_{uuid.uuid4().hex}.png"
     analyzer.generate_radar_chart(chart_file)
 
-    # Leaderboard update
-    lb = LeaderboardManager('data/leaderboard.csv')
-    lb.add_score(username, final_score)
-
     # Load memes (tiers)
     memes = load_json('memes.json')
 
-    # ✅ CORRECT tier selection (highest min_score match)
-    selected_meme = max(
-        (m for m in memes if final_score >= m['min_score']),
-        key=lambda x: x['min_score']
-    )
+    # Use new scoring config to determine tier and percentage
+    tier = analyzer.tier_for_score(final_score)
+    brainrot_pct = analyzer.percentage(final_score)
+
+    # Find meme block matching the tier label
+    selected_meme = next((m for m in memes if m['label'] == tier['label']), None)
+    if not selected_meme:
+        selected_meme = memes[0]
 
     # ✅ RANDOMIZATION
     roast = random.choice(selected_meme["roasts"])
-    poetry_lines = random.sample(selected_meme["poetry"], 2)
+    poetry_lines = random.sample(selected_meme["poetry"], min(2, len(selected_meme["poetry"])) )
 
     # Pack final meme object
     final_meme = {
@@ -221,13 +253,18 @@ def submit():
         "sound": selected_meme["sound"]
     }
 
+    # Store scaled score in leaderboard instead of raw if needed
+    scaled_score = analyzer.scaled_total(final_score)
+    lb = LeaderboardManager('data/leaderboard.csv')
+    lb.add_score(username, scaled_score)
+
     return jsonify({
-        "score": final_score,
+        "score": scaled_score,
         "chart": chart_file,
         "meme": final_meme
     })
 
-  
+
 # =========================
 # RUN
 # =========================

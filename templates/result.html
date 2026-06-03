@@ -8,7 +8,22 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">  
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Light Mode Overrides for Result Page */
+        body.light-mode .feedback-card {
+            background: var(--glass-bg);
+            border-color: var(--glass-border);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            color: var(--text-main);
+        }
+        body.light-mode .brainrot-index {
+            color: var(--text-main) !important;
+        }
+        body.light-mode .poetry-text {
+            color: var(--text-muted);
+        }
+    </style>
 </head>
 
 <body class="result-body {% if pct >= 70 %}theme-red{% elif pct <= 30 %}theme-green{% else %}theme-yellow{% endif %}">
@@ -32,8 +47,9 @@
                 <h3 class="result-subtitle">YOUR RESULT</h3>
 
                 <h1 class="result-score">
-                    {{ score }}<span class="score-denominator">/40</span>
+                    {{ score }}<span class="score-denominator">/{{ max_score }}</span>
                 </h1>
+
 
                 <p class="meme-label highlight">
                     {{ meme.label }}
@@ -90,28 +106,44 @@
         }
 
         function shareWhatsApp() {
-            const text = `My BrainRot Score is {{ score }}/40 ({{ pct }}% Brain Rot)! 🧠💀 Check yours here: ${window.location.origin}`;
+            const text = `My BrainRot Score is {{ score }}/{{ max_score }} ({{ pct }}% Brain Rot)! 🧠💀 Check yours here: ${window.location.origin}`;
             window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
         }
 
         async function shareInstagram() {
-            const shareData = {
-                title: 'BrainRot Score',
-                text: `My BrainRot Score is {{ score }}/40 ({{ pct }}% Brain Rot)! 🧠💀`,
-                url: window.location.origin
-            };
+            try {
+                // Fetch the chart image to share
+                const imgUrl = document.getElementById('radar-chart').src;
+                const response = await fetch(imgUrl);
+                const blob = await response.blob();
+                const file = new File([blob], 'brainrot_score.png', { type: 'image/png' });
 
-            if (navigator.share) {
-                try {
+                const shareData = {
+                    title: 'BrainRot Score',
+                    text: `My BrainRot Score is {{ score }}/{{ max_score }} ({{ pct }}% Brain Rot)! 🧠💀`,
+                    url: window.location.origin,
+                    files: [file]
+                };
+
+                // Check if device supports sharing files
+                if (navigator.canShare && navigator.canShare(shareData)) {
                     await navigator.share(shareData);
-                } catch (err) {
-                    console.log('Share failed:', err);
+                } else if (navigator.share) {
+                    // Fallback to text only if file sharing is not supported
+                    await navigator.share({
+                        title: shareData.title,
+                        text: shareData.text,
+                        url: shareData.url
+                    });
+                } else {
+                    throw new Error("Web Share not supported");
                 }
-            } else {
+            } catch (err) {
+                console.log('Share failed or fallback triggered:', err);
                 // Fallback: Copy to clipboard
-                const text = `${shareData.text} Check yours at ${shareData.url}`;
+                const text = `My BrainRot Score is {{ score }}/{{ max_score }} ({{ pct }}% Brain Rot)! 🧠💀 Check yours at ${window.location.origin}`;
                 navigator.clipboard.writeText(text).then(() => {
-                    alert('Result copied to clipboard! Share it on your Instagram Story 📸');
+                    alert('Result copied to clipboard! Paste it on your Instagram Story 📸');
                 });
             }
         }
@@ -127,6 +159,11 @@
             once: true,
             easing: 'ease-out-cubic'
         });
+
+        // Apply theme from localStorage
+        if (localStorage.getItem('br_theme') === 'light') {
+            document.body.classList.add('light-mode');
+        }
     </script>
 
 </body>

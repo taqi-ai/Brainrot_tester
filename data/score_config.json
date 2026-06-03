@@ -1,0 +1,10 @@
+{
+  "raw_max_score": 40,
+  "max_score": 100,
+  "tiers": [
+    { "min_pct": 0,   "max_pct": 25, "label": "Sigma Focus God",  "sound": "calm.mp3" },
+    { "min_pct": 26,  "max_pct": 50, "label": "Balanced Human",   "sound": "calm.mp3" },
+    { "min_pct": 51,  "max_pct": 75, "label": "Reels Warrior",    "sound": "mid.mp3"   },
+    { "min_pct": 76,  "max_pct": 100,"label": "Brainrot Zombie",  "sound": "wrong.mp3" }
+  ]
+}
